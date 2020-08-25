@@ -28,8 +28,11 @@ const wikitypeToBoundingBox = {
 }
 
 async function getBlockInfo (block) {
+  // date from git blame for this file
+  let date = new Date('2018-09-06');
+
   return new Promise((resolve, reject) => {
-    wikiTextParser.getArticle(block, (err, data) => {
+    wikiTextParser.getFixedArticle(block, date.toISOString(), (err, data) => {
       if (err) return reject(err)
 
       const sectionObject = wikiTextParser.pageToSectionObject(data)
